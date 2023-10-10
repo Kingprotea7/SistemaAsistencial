@@ -12,6 +12,10 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav mx-auto">
                     <li class="nav-item mb-2 mb-lg-0 mr-3 mr-lg-4">
+                        <a class="nav-link" href="{{ route('inicio') }}">Inicio</a>
+
+                    </li>
+                    <li class="nav-item mb-2 mb-lg-0 mr-3 mr-lg-4">
                         <a class="nav-link" href="#">Perfil</a>
                     </li>
                     <li class="nav-item mb-2 mb-lg-0 mr-3 mr-lg-4">
