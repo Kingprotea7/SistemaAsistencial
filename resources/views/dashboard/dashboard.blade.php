@@ -33,7 +33,7 @@
             </div>
             <div class="col-md-3">
                 <div class="card mb-4">
-                    <a href="{{ route('Alumnado.index') }}">
+                    <a href="{{ route('RegistrarAsistencia') }}">
                         <img src="imagen1.jpg" class="card-img-top" alt="Imagen 1">
                         <div class="card-body text-center">
                             <h5 class="card-title">Asistencia</h5>

@@ -1,16 +1,32 @@
 @extends('plantilla.plantilla')
 
 @section('content')
-<div class="container mt-5">
+<div class="container mt-5 mb-">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="custom-card border rounded shadow">
                 <div class="custom-card-header bg-primary text-white">
-                    <h1 class="card-title text-center">Crear Salón</h1>
+                    <h1 class="card-title text-center">Crear Alumno</h1>
                 </div>
                 <div class="custom-card-body">
-                    <form action="{{ route('Salones.store') }}" method="POST">
+                    <form action="{{ route('Alumnado.store') }}" method="POST">
                         @csrf
+                        <div class="mb-3">
+                            <label for="nombre" class="form-label">Nombre</label>
+                            <input type="text" class="form-control" id="nombre" name="nombre" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="ap_paterno" class="form-label">Apellido Paterno</label>
+                            <input type="text" class="form-control" id="ap_paterno" name="ap_paterno" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="ap_materno" class="form-label">Apellido Materno</label>
+                            <input type="text" class="form-control" id="ap_materno" name="ap_materno" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="num_padre" class="form-label">Número del padre:</label>
+                            <input type="text" class="form-control" id="num_padre" name="num_padre" required>
+                        </div>
                         <div class="mb-3">
                             <label for="nivel" class="form-label">Nivel educativo</label>
                             <select class="form-select" id="nivel" name="nivel" required>
@@ -32,7 +48,7 @@
                             </select>
                         </div>
                         <div class="mb-3">
-                            <label for "section" class="form-label">Sección</label>
+                            <label for="section" class="form-label">Sección</label>
                             <select class="form-select" id="section" name="section" required>
                                 <option value="" selected disabled>Seleccione una sección</option>
                                 <option value="A">Sección A</option>
@@ -41,17 +57,7 @@
                                 <option value="D">Sección D</option>
                             </select>
                         </div>
-                        <div class="mb-3">
-                            <label for="docente_id" class="form-label">Tutor</label>
-                            <select class="form-select" id="docente_id" name="docente_id" required>
-                                <option value="" selected disabled>Seleccione un docente</option>
-                                @foreach($docentes as $docente)
-                                    <option value="{{ $docente->id }}">{{ $docente->name }} {{ $docente->lastname }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-
-                        <button type="submit" class="btn btn-primary">Crear Salón</button>
+                        <button type="submit" class="btn btn-primary">Crear Alumno</button>
                     </form>
                 </div>
             </div>
@@ -59,19 +65,7 @@
     </div>
 </div>
 
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-    const nivelSelect = document.getElementById('nivel');
-    const gradeSelect = document.getElementById('grade');
-    nivelSelect.addEventListener('change', function () {
-        if (nivelSelect.value === 'secundaria') {
-            gradeSelect.querySelector('option[value="6"]').style.display = 'none';
-        } else {
-            gradeSelect.querySelector('option[value="6"]').style.display = 'block';
-        }
-    });
-});
-</script>
+
 
 @endsection
 
