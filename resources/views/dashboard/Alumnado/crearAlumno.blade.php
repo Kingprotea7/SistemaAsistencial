@@ -7,7 +7,7 @@
             <div class="custom-card border rounded shadow">
                 <div class="custom-card-header bg-primary text-white">
                     <h1 class="card-title text-center">Crear Alumno</h1>
-                </div>
+                </div>  
                 <div class="custom-card-body">
                     <form action="{{ route('Alumnado.store') }}" method="POST">
                         @csrf

@@ -66,7 +66,23 @@ public function ver(SalonesModel $salon)
 
 public function editar(SalonesModel $salon)
 {
-    return view('dashboard.Salones.editar', ['salon' => $salon]);
+    $docentes = docenteModel::all();
+    return view('dashboard.Salones.editar', ['salon' => $salon,'docentes' => $docentes]);
+}
+public function store1(Request $request, $id){
+    $salonId = $request->input('salon_id'); // Obtén el id del salón desde el formulario
+
+    // Ahora puedes buscar el salón utilizando el $id y actualizarlo
+    $salon = SalonesModel::find($salonId);
+    $salon->docente_id = $request->input('docente_id');
+    $salon->save();
+
+    return back();
+}
+
+public function asistencias()
+{
+    return $this->hasMany(AsistenciaModel::class, 'salon_id');
 }
 
 public function borrar($id) {

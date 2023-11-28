@@ -32,7 +32,7 @@
                             </select>
                         </div>
                         <div class="mb-3">
-                            <label for "section" class="form-label">Sección</label>
+                            <label for ="section" class="form-label">Sección</label>
                             <select class="form-select" id="section" name="section" required>
                                 <option value="" selected disabled>Seleccione una sección</option>
                                 <option value="A">Sección A</option>

@@ -18,6 +18,7 @@ use Illuminate\Database\Eloquent\Model;
             'fecha',
             'estado',
             'comentario',
+            'tipo'
         ];
 
         public function alumno()
@@ -28,6 +29,10 @@ use Illuminate\Database\Eloquent\Model;
         public function salon()
         {
             return $this->belongsTo(SalonesModel::class, 'salon_id');
+        }
+        public function reporte()
+        {
+            return $this->belongsTo(Reporte::class, 'alumno_id');
         }
 
 

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Registrarse en el sistema asistencial Lucia Quispe Nina</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 <body>
@@ -86,7 +86,7 @@ height: 100vh !important;
         <button type="submit" class="btn btn-success btn-lg mb-1">Registrarse</button>
     </div>
     <div class="col-md-6 text-center"> <!-- Centra los botones horizontalmente -->
-        <a href="{{ route('register.index') }}" class="btn btn-primary btn-lg mb-1">Iniciar sesión</a>
+        <a href="{{ route('login') }}" class="btn btn-primary btn-lg mb-1">Iniciar sesión</a>
     </div>
 </div>
 

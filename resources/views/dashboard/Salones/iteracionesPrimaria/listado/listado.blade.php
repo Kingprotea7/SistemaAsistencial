@@ -23,6 +23,7 @@
                     <th>Nivel</th>
                     <th>Grado</th>
                     <th>Sección</th>
+                    <th class="text-center bg-info text-red">Identificador</th>
                 </tr>
             </thead>
             <tbody>
@@ -35,6 +36,7 @@
                     <td>{{ $alumno->nivel }}</td>
                     <td>{{ $alumno->grado }}</td>
                     <td>{{ $alumno->seccion }}</td>
+                    <td class="text-center bg-info text-white">{{ $alumno->numero_aleatorio}}</td>
                 </tr>
                 @endforeach
             </tbody>

@@ -34,6 +34,8 @@ public function store(Request $request){
         'grade' => 'required',
         'section' => 'required',
     ]);
+    $numeroAleatorio = uniqid();
+
     $salon = SalonesModel::where('grade', $request->input('grade'))
     ->where('section', $request->input('section'))
     ->first();
@@ -47,6 +49,7 @@ public function store(Request $request){
         $alumno->nivel = $request->input('nivel');
         $alumno->grado = $request->input('grade');
         $alumno->seccion = $request->input('section');
+        $alumno->numero_aleatorio = $numeroAleatorio;
         $alumno->salon_id = $salon->id; // Asigna el ID del salón al alumno
         $alumno->save();
 

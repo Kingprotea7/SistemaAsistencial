@@ -2,30 +2,29 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\userModel;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use App\Models\UserStatus;
 
 class userController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-       return view('login.login');
-    }
+
+
+    public function showLoginForm()
+{
+    return view('login.login');
+}
 
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        //
-    }
+
 
     /**
      * Store a newly created resource in storage.
@@ -33,16 +32,93 @@ class userController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
+     public function mostrarusuarios(){
+        $users = User::all();
+
+
+        return view('login.mostrarusuarios', ['users' => $users]);
+     }
+     public function ordenar(Request $request)
+     {
+         // Obtener el parámetro de orden desde la solicitud
+         $orderBy = $request->query('order_by', 'id'); // Si no se proporciona, por defecto se ordena por ID
+
+         // Realizar la consulta a la base de datos con la ordenación especificada
+         $users = User::orderBy($orderBy)->get();
+
+         // Pasar los datos a la vista
+         return view('login.mostrarUsuarios', ['users' => $users]);
+     }
+
     public function store(Request $request)
     {
-      $user=new userModel;
-      $user->name=$request->input('name');
-      $user->lastname=$request->input('lastname');
-      $user->email=$request->input('email');
-      $user->password=$request->input('password');
-      $user->role=$request->input('role');
-      $user->save();
+        $user = new User;
+        $user->name = $request->input('name');
+        $user->lastname = $request->input('lastname');
+        $user->email = $request->input('email');
+        $user->password = Hash::make($request->input('password')); // Uso de Hash::make
+        $user->role = $request->input('role');
+        $user->save();
     }
+
+
+public function submit(Request $request)
+{
+    $credentials = $request->only('email', 'password');
+
+    if (Auth::attempt($credentials)) {
+        return redirect()->route('inicio');
+    } else {
+        // Autenticación fallida
+        return redirect()->route('login')->withErrors(['error' => 'Credenciales incorrectas :( ']);
+
+    }
+}
+public function logout()
+{
+    Auth::logout();
+
+    return redirect()->route('login');
+}
+
+
+    public function login(Request $request)
+    {
+        // Validación de los datos del formulario
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
+
+        // Intento de autenticación
+        $credentials = $request->only('email', 'password');
+
+        if (Auth::attempt($credentials)) {
+            // Autenticación exitosa
+            return redirect()->route('inicio');
+        } else {
+            // Autenticación fallida
+            return redirect()->route('login')->withErrors(['error' => 'Credenciales incorrectas']);
+        }
+    }
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+}
+
 
 
     /**
@@ -51,10 +127,7 @@ class userController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        //
-    }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -62,10 +135,7 @@ class userController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-        //
-    }
+
 
     /**
      * Update the specified resource in storage.
@@ -74,10 +144,7 @@ class userController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        //
-    }
+
 
     /**
      * Remove the specified resource from storage.
@@ -85,8 +152,3 @@ class userController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        //
-    }
-}

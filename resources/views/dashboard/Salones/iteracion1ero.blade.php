@@ -27,7 +27,7 @@
                 <td>
                     <div class="btn-group" role="group">
                         <a href="{{ route('verAlumnosDelSalon', $salon->id) }}" class="btn btn-info btn-sm">Ver Alumnos</a>
-                        <a href="{{ route('editarSalon', $salon->id) }}" class="btn btn-primary btn-sm">Editar</a>
+                  
                         <a href="{{ route('borrarSalon', $salon->id) }}" class="btn btn-danger btn-sm">Borrar</a>
                     </div>
                 </td>

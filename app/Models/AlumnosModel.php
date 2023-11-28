@@ -17,9 +17,36 @@ class AlumnosModel extends Model
         'nivel',
         'grado',
         'seccion',
+        'asistencias',
+        'tardanzas',
+        'faltas'
     ];
+
     public function salon() {
-        return $this->belongsTo(SalonModel::class, 'salon_id');
+        return $this->belongsTo(SalonesModel::class, 'salon_id');
     }
+// En el modelo AlumnosModel
+
+public function reportes()
+{
+    return $this->hasMany(Reporte::class, 'alumno_id');
+}
+
+public function nombreCompleto()
+{
+    return "{$this->nombre}";
+}
+public function apellido()
+{
+    return " {$this->apellido_paterno}";
+}
+public function lastname2()
+{
+    return " {$this->apellido_materno}";
+}
+public function asistencias()
+{
+    return $this->hasMany(AsistenciaModel::class, 'alumno_id');
+}
 
 }

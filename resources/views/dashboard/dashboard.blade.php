@@ -6,7 +6,7 @@
 <div class="dashboard">
     <div class="container mt-5">
         <!-- Tarjetas en horizontal, 4 por fila, centradas -->
-        <div class="row justify-content-center">
+        <div class="row justify-content-center ">
             <div class="col-md-3">
                 <div class="card mb-4">
                     <a href="{{ route('Alumnado.index') }}">
@@ -44,7 +44,7 @@
             </div>
             <div class="col-md-3">
                 <div class="card mb-4">
-                    <a href="{{ route('Alumnado.index') }}">
+                    <a href="{{ route('reportes') }}">
                         <img src="imagen1.jpg" class="card-img-top" alt="Imagen 1">
                         <div class="card-body text-center">
                             <h5 class="card-title">Reportes</h5>
@@ -62,7 +62,7 @@
         <div class="row justify-content-center">
             <div class="col-md-3">
                 <div class="card mb-4">
-                    <a href="{{ route('Alumnado.index') }}">
+                    <a href="{{ route('mostrarusuarios') }}">
                         <img src="imagen1.jpg" class="card-img-top" alt="Imagen 1">
                         <div class="card-body text-center">
                             <h5 class="card-title">Usuarios</h5>

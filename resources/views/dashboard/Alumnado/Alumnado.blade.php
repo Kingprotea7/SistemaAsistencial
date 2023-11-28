@@ -1,7 +1,7 @@
 @extends('plantilla.plantilla')
 
 @section('content')
-<div class="container mt-5">
+<div class="container mt-5 ">
     <div class="row justify-content-center">
         <form id="searchForm" action="{{ route('buscar-alumnos') }}" method="GET">
             <div class="input-group mb-3">
@@ -12,7 +12,7 @@
             </div>
         </form>
 
-        <div class="col-md-4">
+        <div class="col-md-4 ">
             <div class="card">
                 <img src="{{ asset('ruta_a_tu_imagen1.jpg') }}" class="card-img-top" alt="Imagen 1">
                 <div class="card-body text-center">

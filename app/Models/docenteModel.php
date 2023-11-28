@@ -12,7 +12,7 @@ class docenteModel extends Model
     public function salones()
     {
 
-        return $this->hasMany(Salon::class);
+        return $this->hasMany(SalonesModel::class);
 
     }
 protected $table='docentes';
