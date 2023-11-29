@@ -17,4 +17,8 @@ public function markAsOnline()
 {
     $this->update(['is_online' => true]);
 }
+public function markAsOffline()
+{
+    $this->update(['is_online' =>false]);
+}
 }

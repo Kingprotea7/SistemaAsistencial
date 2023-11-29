@@ -55,6 +55,7 @@ Route::group(['middleware' => ['auth', 'web','update.user.status']], function ()
 
 
     Route::prefix('dashboard')->group(function () {
+       
         Route::get('/', [UsuariosEnLineaController::class, 'index'])->name('inicio');
         Route::get('/reportes-diarios', [ReporteController::class, 'mostrarReportesDiarios'])->name('reporte_diario');
         Route::get('/reportes-semanal', [ReporteController::class, 'mostrareporteMensual'])->name('reporte_semanal');

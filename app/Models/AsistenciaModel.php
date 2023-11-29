@@ -34,7 +34,10 @@ use Illuminate\Database\Eloquent\Model;
         {
             return $this->belongsTo(Reporte::class, 'alumno_id');
         }
-
+        public function asistencias()
+        {
+            return $this->hasMany(AsistenciaModel::class, 'alumno_id', 'alumno_id');
+        }
 
 
 

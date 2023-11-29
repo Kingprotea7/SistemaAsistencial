@@ -8,9 +8,10 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
-    <header>
+    <header class="text-center d-flex align-items-center justify-content-center">
         @include('plantilla.header') <!-- Incluye el encabezado -->
     </header>
+
 
     <div class="container-fluid">
         <div class="row">
@@ -18,7 +19,7 @@
                 @include('plantilla.sidebar') <!-- Incluye el Sidebar -->
             </nav>
 
-            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 bg-warning">
                 @yield('content') <!-- Esta sección se rellenará en las vistas específicas -->
 
 

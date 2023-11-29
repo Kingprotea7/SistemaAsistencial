@@ -50,7 +50,7 @@ public function almacenarReporteSalon(Request $request)
         $dia = $request->input('dia');
         $semana = $request->input('semana');
         $mes = $request->input('mes');
-      
+
         // Loguear información para verificar flujo del programa
         Log::info('Datos del formulario:', [
             'tipo_reporte' => $tipoReporte,
@@ -87,6 +87,11 @@ public function almacenarReporteSalon(Request $request)
         'mes' => $mes,
 
         // Otros campos según tu necesidad
+    ]);
+    $alumno->update([
+        'asistencia_registrada' => false,
+        'tardanza_registrada' => false,
+        'falta_registrada' => false,
     ]);
 }
 

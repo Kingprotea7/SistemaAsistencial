@@ -19,19 +19,8 @@ class userController extends Controller
     return view('login.login');
 }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
 
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
 
      public function mostrarusuarios(){
         $users = User::all();
@@ -75,10 +64,17 @@ public function submit(Request $request)
 
     }
 }
+
+
 public function logout()
 {
-    Auth::logout();
 
+    $user = Auth::user();
+
+    // Marcar al usuario como offline utilizando el modelo UserStatus
+    $user->status->markAsOffline();
+    UserStatus::where('user_id', $user->id)->update(['is_online' => false]);
+    Auth::logout();
     return redirect()->route('login');
 }
 
@@ -104,7 +100,7 @@ public function logout()
     }
 
 
-    
+
 
 
 
