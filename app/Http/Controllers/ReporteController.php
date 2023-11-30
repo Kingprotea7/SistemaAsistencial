@@ -31,30 +31,24 @@ public function mostrarReportesDiarios(Request $request)
     $gradoSeleccionado = $request->input('grade');
     $seccionSeleccionada = $request->input('seccion');
 
-    $reportesDiarios = Reporte::with(['alumno', 'asistencia'])
+    // Obtén los reportes diarios con la información de alumnos y asistencias
+    $query = Reporte::with(['alumno', 'asistencia'])
     ->leftJoin('alumnos', 'reportes.alumno_id', '=', 'alumnos.id')
-    ->leftJoin('asistencias', 'reportes.alumno_id', '=', 'asistencias.alumno_id')
+    ->leftJoin('asistencias', 'reportes.asistencia_id', '=', 'asistencias.id')
     ->where('tipo_reporte', 'diario')
-    ->whereDate('reportes.created_at', $fechaHoy);
+    ->whereDate('reportes.created_at', $fechaHoy)
+    ->select('reportes.*', DB::raw('asistencias.tipo as tipo_asistencia'));
 
-if ($nivelSeleccionado) {
-    $reportesDiarios->where('alumnos.nivel', $nivelSeleccionado);
-}
+    $reportesDiarios = $query->get();
 
-if ($gradoSeleccionado) {
-    $reportesDiarios->where('alumnos.grado', $gradoSeleccionado);
-}
+    // Imprimir los datos antes de enviarlos a la vista
 
-if ($seccionSeleccionada) {
-    $reportesDiarios->where('alumnos.seccion', $seccionSeleccionada);
-}
 
-$reportesDiarios = $reportesDiarios->select('reportes.*', 'asistencias.tipo')
-    ->groupBy('reportes.id')
-    ->get();
-
+    // Obtener los resultados
     return view('reporte.diario', compact('reportesDiarios'));
+
 }
+
 
 public function mostrarBarraSalones(){
 

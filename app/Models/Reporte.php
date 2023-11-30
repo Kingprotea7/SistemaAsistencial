@@ -9,7 +9,7 @@ class Reporte extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['alumno_id', 'tipo_reporte', 'dia', 'semana', 'mes'];
+    protected $fillable = ['alumno_id', 'tipo_reporte','asistencia_id', 'dia', 'semana', 'mes'];
 
 // En el modelo Reporte.php
 public function alumno()
@@ -23,7 +23,7 @@ public function reportes()
 
 public function asistencia()
 {
-    return $this->hasOne(AsistenciaModel::class, 'alumno_id', 'alumno_id');
+    return $this->belongsTo(AsistenciaModel::class, 'asistencia_id');
 }
 public function asistencias()
 {

@@ -19,7 +19,7 @@ class AlumnosModel extends Model
         'seccion',
         'asistencias',
         'tardanzas',
-        'faltas'
+        'faltas','asistencia_registrada','tardanza_registrada','falta_registrada'
     ];
 
     public function salon() {

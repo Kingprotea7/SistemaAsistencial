@@ -18,7 +18,7 @@
                 <img src="{{ asset('ruta_a_tu_imagen2.jpg') }}" class="card-img-top" alt="Imagen 2">
                 <div class="card-body text-center">
                     <h5 class="card-title">Crear Salones</h5>
-                    <a href="{{ route('Salones.create') }}" class="btn btn-primary text-center">Ir</a>
+                    <a href="{{ route('Salones.create') }}" class="btn btn-primary text-center">Crear</a>
                 </div>
             </div>
         </div>

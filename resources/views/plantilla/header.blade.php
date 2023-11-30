@@ -2,7 +2,7 @@
 <div>
     @yield('head')
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-danger border-bottom">
+    <nav class="navbar navbar-expand-lg navbar-light bg-danger border-bottom mb-3">
         <div class="container d-flex justify-content-between align-items-center">
             <!-- Logo y nombre de la aplicación -->
             <div class="navbar-brand-container">

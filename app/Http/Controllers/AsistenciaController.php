@@ -78,26 +78,54 @@ public function almacenarReporteSalon(Request $request)
 
         Log::info('Número de alumnos en la colección: ' . $alumnos->count());
 
-        // Itera sobre los alumnos y almacena el reporte
-       foreach ($alumnos as $alumno) {
-    $alumno->reportes()->create([
-        'tipo_reporte' => $tipoReporte,
-        'dia' => $dia,
-        'semana' => $semana,
-        'mes' => $mes,
 
-        // Otros campos según tu necesidad
-    ]);
-    $alumno->update([
-        'asistencia_registrada' => false,
-        'tardanza_registrada' => false,
-        'falta_registrada' => false,
-    ]);
-}
+        // Itera sobre los alumnos y almacena el reporte
+        foreach ($alumnos as $alumno) {
+            $alumnito = $alumno->id;
+            Log::info('alumno_id:'.$alumnito);
+            $idAsistencia = AsistenciaModel::where('alumno_id', $alumno->id)->latest()->value('id');
+            AlumnosModel::where('id', $alumnito)->update([
+                'asistencia_registrada' => false,
+                'tardanza_registrada' => false,
+                'falta_registrada' => false,
+            ]);
+            // Utiliza el método find directamente en el modelo para obtener el alumno
+            $alumno = AlumnosModel::find($alumnito);
+            Log::info('alumno_id:'.$alumno);
+            // Verifica si se encontró el alumno
+
+            if ($alumno) {
+                // Utiliza el método where para obtener la asistencia del alumno
+                $asistencia = AsistenciaModel::where('alumno_id', $alumno->id)->first();
+
+                // Verifica si se encontró la asistencia
+                if ($asistencia) {
+                    $alumno->reportes()->create([
+                        'tipo_reporte' => $tipoReporte,
+                        'dia' => $dia,
+                        'semana' => $semana,
+                        'mes' => $mes,
+                        'asistencia_id' => $idAsistencia,
+                        // Otros campos según tu necesidad
+                    ]);
+
+
+                } else {
+                    // Manejar el caso en el que no se encuentra la asistencia
+                    Log::info("No se encontró la asistencia para el alumno con ID: " . $alumno->id);
+                }
+            } else {
+                // Manejar el caso en el que no se encuentra el alumno con el ID proporcionado
+                Log::info("No se encontró el alumno con ID: " . $alumnito);
+            }
+        }
+
 
 
         // Redirigir con un mensaje de éxito
         return redirect()->back()->with('success', 'Reporte almacenado con éxito');
+
+
     } catch (\Exception $e) {
         Log::error('Error al almacenar el reporte: ' . $e->getMessage());
         // Manejar cualquier error que pueda ocurrir durante el proceso de almacenamiento
@@ -164,23 +192,18 @@ public function registrarAsistencias(Request $request) {
     $estado = $request->input('estado');
     $tipo = $request->input('tipoAsistencia');
     $fecha = now();
-    $tipoReporte = $request->input('tipo_reporte');
-
-
     $alumno = AlumnosModel::find($alumnoId);
-// Agrega esto en tu controlador para depuración
-Log::info('Estado: ' . $estado);
-Log::info('Asistencia Registrada: ' . $alumno->asistencia_registrada);
-// ... y así sucesivamente para otras variables
 
-    // Crear un nuevo registro de asistencia
-    $asistencia = new AsistenciaModel;
-    $asistencia->fecha = $fecha;
-    $asistencia->alumno_id = $alumnoId;
-    $asistencia->salon_id = $alumno->salon_id; // Ajusta esto según tu lógica de negocio
-    $asistencia->tipo = $tipo;
-    $asistencia->save();
+   // Crear un nuevo registro de asistencia
+   $asistencia = new AsistenciaModel;
+   $asistencia->fecha = $fecha;
+   $asistencia->alumno_id = $alumnoId;
+   $asistencia->salon_id = $alumno->salon_id;
+   $asistencia->tipo = $tipo;
+   $asistencia->save();
 
+   // Obtén el id de la asistencia recién creada
+   $idAsistencia = $asistencia->id;
     // Actualizar las estadísticas del alumno
     if ($estado === 'anular') {
         $alumno->asistencia_registrada = false;

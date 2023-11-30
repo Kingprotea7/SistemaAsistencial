@@ -35,7 +35,10 @@ class SalonesController extends Controller
     return view('dashboard.Salones.listarPrimaria',['salones'=>$salones]);
    }
    public function listarS(){
-    return view('dashboard.Salones.listarSecundaria');
+    $salones = SalonesModel::where('grade', '1')
+    ->where('nivel', 'secundaria')
+    ->orderBy('section', 'asc')->with('docente')->get();
+    return view('dashboard.Salones.listarSecundaria',['salones'=>$salones]);
    }
    public function listarS1(Request $request){
     $grade = $request->input('grade'); // Obtiene el valor del parámetro 'grade' desde la URL

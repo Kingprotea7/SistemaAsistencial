@@ -15,25 +15,25 @@ return new class extends Migration
     {
         Schema::create('reportes', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('alumno_id');
-            $table->foreign('alumno_id')->references('id')->on('alumnos')->onDelete('cascade');
+            $table->foreignId('alumno_id')->constrained('alumnos');
             $table->string('tipo_reporte');
             $table->string('dia')->nullable();
             $table->string('semana')->nullable();
             $table->string('mes')->nullable();
-            // Otros campos según tu necesidad
+            $table->foreignId('asistencia_id')->constrained('asistencias');
+
             $table->timestamps();
+
+            // Puedes agregar otros campos según sea necesario
         });
     }
-
     /**
      * Reverse the migrations.
      *
      * @return void
      */
-
-     public function down()
-     {
-         Schema::dropIfExists('reportes');
-     }
+    public function down()
+    {
+        Schema::dropIfExists('reportes');
+    }
 };

@@ -14,7 +14,7 @@ use Illuminate\Database\Eloquent\Model;
 
         protected $fillable = [
             'alumno_id',
-            'salon_id',  // Agregamos el campo salon_id
+            'salon_id','reporte_id',   // Agregamos el campo salon_id
             'fecha',
             'estado',
             'comentario',
