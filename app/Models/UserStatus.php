@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class UserStatus extends Model
 {
     use HasFactory;
-    protected $fillable = ['is_online'];
+    protected $fillable = ['is_online','updated_at','created_at'];
     public function user()
     {
         return $this->belongsTo(User::class);

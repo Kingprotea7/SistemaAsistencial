@@ -51,12 +51,18 @@
                             </select>
                         </div>
 
-                        <button type="submit" class="btn btn-primary">Crear Salón</button>
+                        <button type="submit" class="btn btn-primary mb-3">Crear Salón</button>
+                        @if($errors->has('mal'))
+<div class="alert alert-danger">
+    {{ $errors->first('mal') }}
+</div>
+@endif
                     </form>
                 </div>
             </div>
         </div>
     </div>
+
 </div>
 
 <script>

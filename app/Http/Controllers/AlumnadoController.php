@@ -5,14 +5,20 @@ namespace App\Http\Controllers;
 use App\Models\AlumnosModel;
 use App\Models\SalonesModel;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Session;
 class AlumnadoController extends Controller
 {
-   public function index(Request $request){
+    public function index(Request $request)
+    {
         $ruta = $request->path();
+
+
+            // Resto de tu lógica aquí
             return view('dashboard.Alumnado.Alumnado');
 
-   }
+    }
+
+
    public function create(){
 return view('dashboard.Alumnado.crearAlumno');
    }
@@ -53,11 +59,11 @@ public function store(Request $request){
         $alumno->salon_id = $salon->id; // Asigna el ID del salón al alumno
         $alumno->save();
 
-        return redirect()->route('Alumnado.index');
+        return redirect()->route('Alumnado.index')->withErrors(['bien' => 'Nuevo alumno registrado con éxito']);
     } else {
         // Maneja el caso en el que no se encuentra el salón
-        // Puedes mostrar un mensaje de error o redirigir a una página de error
-        return back()->with('error', 'El salón no se encontró.');
+        // Puedes redirigir a una vista de error o mostrar un mensaje en la misma vista
+        return redirect()->route('Alumnado.index')->withErrors(['mal' => 'Ha ocurrido un error, no se ha registrado el alumno']);
     }
 }
 

@@ -66,10 +66,10 @@
             <div class="col-md-3">
                 <div class="card mb-4">
                     <a href="{{ route('mostrarusuarios') }}">
-                        <img src="imagen1.jpg" class="card-img-top" alt="Imagen 1">
+                        <img src="{{ asset('images/usuarios12.png') }}" class="card-img-top" alt="Imagen 1">
                         <div class="card-body text-center bg-dark">
                             <h5 class="h3 text-white text-decoration-none">Usuarios</h5>
-                            <p class="text-white text-decoration-none">Módulo para gestionar </p>
+                            <p class="text-white text-decoration-none">Visualize los usuarios registrados y su ultima conexión.</p>
                         </div>
                     </a>
                 </div>
@@ -77,10 +77,10 @@
             <div class="col-md-3">
                 <div class="card mb-4">
                     <a href="{{ route('Alumnado.index') }}">
-                        <img src="imagen1.jpg" class="card-img-top" alt="Imagen 1">
+                        <img src="{{ asset('images/estad.png') }}" class="card-img-top" alt="Imagen 1">
                         <div class="card-body text-center bg-dark">
                             <h5 class="h3 text-white text-decoration-none">Historial</h5>
-                            <p class="text-white text-decoration-none">Módulo para gestionar </p>
+                            <p class="text-white text-decoration-none">Gestione las acciones de los usuarios del sistema.76</p>
                         </div>
                     </a>
                 </div>
@@ -88,10 +88,10 @@
             <div class="col-md-3">
                 <div class="card mb-4">
                     <a href="{{ route('Alumnado.index') }}">
-                        <img src="imagen1.jpg" class="card-img-top" alt="Imagen 1">
+                        <img src="{{ asset('images/estadisticas.png') }}" class="card-img-top" alt="Imagen 1">
                         <div class="card-body text-center bg-dark">
                             <h5 class="h3 text-white text-decoration-none">Estadisticas</h5>
-                            <p class="text-white text-decoration-none">Módulo para gestionar </p>
+                            <p class="text-white text-decoration-none">Visualize las estadísticas mas resaltantes del plantel.</p>
                         </div>
                     </a>
                 </div>
@@ -99,10 +99,10 @@
             <div class="col-md-3">
                 <div class="card mb-4">
                     <a href="{{ route('Alumnado.index') }}">
-                        <img src="imagen1.jpg" class="card-img-top" alt="Imagen 1">
+                        <img src="{{ asset('images/soporte-tecnico.png') }}" class="card-img-top" alt="Imagen 1">
                         <div class="card-body text-center bg-dark">
                             <h5 class="h3 text-white text-decoration-none">Soporte técnico</h5>
-                            <p class="text-white text-decoration-none">Módulo para gestionar </p>
+                            <p class="text-white text-decoration-none">Tiene problemas,no dude en preguntar al soporte.</p>
                         </div>
                     </a>
                 </div>

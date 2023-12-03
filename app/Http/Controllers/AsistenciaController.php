@@ -110,6 +110,8 @@ public function almacenarReporteSalon(Request $request)
                     ]);
 
 
+
+
                 } else {
                     // Manejar el caso en el que no se encuentra la asistencia
                     Log::info("No se encontró la asistencia para el alumno con ID: " . $alumno->id);
@@ -123,14 +125,15 @@ public function almacenarReporteSalon(Request $request)
 
 
         // Redirigir con un mensaje de éxito
-        return redirect()->back()->with('success', 'Reporte almacenado con éxito');
 
+   return   redirect()->back()->withErrors(['bien' => 'Reporte generado satisfactoriamente. ']);
 
     } catch (\Exception $e) {
         Log::error('Error al almacenar el reporte: ' . $e->getMessage());
+
         // Manejar cualquier error que pueda ocurrir durante el proceso de almacenamiento
         // En el catch del controlador
-        return redirect()->back()->with('error', 'Error al almacenar el reporte: ' . $e->getMessage());
+      return   redirect()->back()->withErrors(['mal' => 'No ha seleccionado un tipo de reporte ']);
     }
 }
 

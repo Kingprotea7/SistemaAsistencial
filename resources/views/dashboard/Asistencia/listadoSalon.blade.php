@@ -1,12 +1,36 @@
 @extends('plantilla.plantilla')
 
 @section('content')
-<div class="container mt-5">
-    <h2 class="text-center mb-4 h1">Lista de Alumnos</h2>
 
+<div class="container mt-5 saber">
+
+    <h2 class="text-center mb-4 h1">Lista de Alumnos</h2>
+    <div class="container">
+        <!-- Muestra el mensaje de error si existe -->
+        @if ($errors->has('bien'))
+            <div class="alert alert-success" role="alert">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+            @elseif ($errors->has('mal'))
+            <div class="alert alert-danger" role="alert">
+                {{ $errors->first('mal')}}
+
+
+            </div>
+        @endif
+
+
+
+
+        <!-- Resto de tu contenido -->
+    </div>
     @if ($alumnos->count() > 0)
         <!-- Formulario para generar reporte y almacenar -->
-        <table class="table">
+        <table class="table table-dark table-striped-columns">
             <thead>
                 <tr>
                     <th>ID</th>
@@ -141,7 +165,16 @@
     border: #070707;
     font-size: 18px
 }
+.saber{
+    margin-bottom: 100px
+}
+@media (max-width: 768px) {
+        .saber {
+            margin-bottom: 150px/* Ajusta este valor para pantallas más pequeñas */
 
+
+        }
+    }
 </style>
 
                 </div>
@@ -163,6 +196,8 @@
     @else
         <p>No se encontraron alumnos.</p>
     @endif
+
+
 </div>
 <script>
 function seleccionarTipoReporte(tipo) {

@@ -6,6 +6,7 @@ use App\Models\AlumnosModel;
 use App\Models\AsistenciaModel;
 use App\Models\docenteModel;
 use App\Models\SalonesModel;
+use Exception;
 use Illuminate\Http\Request;
 
 class SalonesController extends Controller
@@ -14,13 +15,31 @@ class SalonesController extends Controller
     return view('dashboard.Salones.Salones');
    }
    public function store(Request $request){
+    try{
+
     $salon=new SalonesModel;
     $salon->nivel=$request->input('nivel');
     $salon->grade=$request->input('grade');
     $salon->section=$request->input('section');
     $salon->docente_id=$request->input('docente_id');
-    $salon->save();
-    return back();
+
+    $salonExistente = SalonesModel::where('grade', $salon->grade)
+    ->where('section', $salon->section)
+    ->first();
+    if($salonExistente){
+        return back()->withErrors(['mal'=> 'El salón que intenta registrar ya existe.']);
+    }
+    else{
+        $salon->save();
+        return redirect()->route('Salones.index')->withErrors(['bien' => 'Nuevo salón registrado con éxito']);
+
+    }
+    }
+    catch(Exception){
+
+        return back()->withErrors(['mal'=> 'Ha ocurrido un error,intentar el registro del salón mas tarde']);
+    }
+
    }
    public function create(){
     $docentes = docenteModel::all(); // Consulta para obtener todos los docentes

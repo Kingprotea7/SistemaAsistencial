@@ -1,7 +1,7 @@
 @extends('plantilla.plantilla')
 
 @section('content')
-    <h2>Usuarios en Línea</h2>
+    <h2>Usuarios en Líneas</h2>
 
     @if (Auth::check())
         <table class="table table-striped">

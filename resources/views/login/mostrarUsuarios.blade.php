@@ -15,6 +15,7 @@
                 <th><a href="{{ route('ordenarusuarios', ['order_by' => 'email']) }}" class="text-decoration-none text-white">Email</a></th>
                 <th><a href="{{ route('ordenarusuarios', ['order_by' => 'role']) }}" class="text-decoration-none text-white">Rol</a></th>
                 <th><a href="{{ route('ordenarusuarios', ['order_by' => 'created_at']) }}" class="text-decoration-none text-white">Creado en</a></th>
+                <th><a href="{{ route('ordenarusuarios', ['order_by' => 'updated_at']) }}" class="text-decoration-none text-white">Ultima conexión</a></th>
             </tr>
         </thead>
         <tbody>
@@ -26,6 +27,7 @@
                     <td>{{ $user->email }}</td>
                     <td class="{{ $user->role === 'admi' ? 'bg-danger text-white' : ($user->role === 'user' ? 'bg-info' : '') }}">{{ $user->role }}</td>
                     <td>{{ $user->created_at->format('d/m/Y H:i:s') }}</td>
+                    <td>{{ $user->updated_at}}</td>
                 </tr>
             @endforeach
         </tbody>

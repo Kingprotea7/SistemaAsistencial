@@ -56,7 +56,15 @@
 @else
     <p class="mt-4">No se encontraron resultados.</p>
 @endif
-
+    @if($errors->has('bien'))
+    <div class="alert alert-success">
+        {{ $errors->first('bien') }}
+    </div>
+@elseif($errors->has('mal'))
+    <div class="alert alert-danger">
+        {{ $errors->first('mal') }}
+    </div>
+@endif
 
 
 @endsection

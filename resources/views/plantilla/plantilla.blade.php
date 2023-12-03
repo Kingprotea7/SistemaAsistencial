@@ -4,13 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-<tu-integridad>" crossorigin="anonymous" />
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.15.0/font/bootstrap-icons.css" rel="stylesheet">
+        <link href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet" />
+
     <title>Sistema Asistencial Lucia Quispe Nina</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
-    <header class="text-center d-flex align-items-center justify-content-center">
+    <header class="bg-color-clase text-center  align-items-center justify-content-center fixed-top">
         @include('plantilla.header') <!-- Incluye el encabezado -->
     </header>
+
+
 
 
     <div class="container-fluid">
@@ -19,8 +25,11 @@
                 @include('plantilla.sidebar') <!-- Incluye el Sidebar -->
             </nav>
 
+
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 ">
+                @yield('estilos')
                 @yield('content') <!-- Esta sección se rellenará en las vistas específicas -->
+                @yield('scripts')
 
 
             </main>
@@ -36,7 +45,7 @@
     <!-- Bootstrap Datepicker -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
-    <footer class="footer-wrapper">
+    <footer class="footer-wrapper fixed-bottom">
         @include('plantilla.footer')
     </footer>
 </body>
@@ -67,6 +76,17 @@ footer {
             transform: scale(1.05); /* Efecto de escala al hacer hover */
             cursor: pointer; /* Cambia el cursor a pointer al hacer hover */
         }
+        body {
+        padding-top: 90px; /* Ajusta este valor según la altura de tu encabezado */
+        padding-bottom: 1200px;
+    }
 
+    @media (max-width: 768px) {
+        body {
+            padding-top: 140px; /* Ajusta este valor para pantallas más pequeñas */
+            padding-bottom: 900px;
+
+        }
+    }
 </style>
 </html>

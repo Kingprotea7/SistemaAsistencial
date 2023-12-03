@@ -24,4 +24,9 @@
         </div>
     </div>
 </div>
+@if($errors->has('bien'))
+<div class="alert alert-success">
+    {{ $errors->first('bien') }}
+</div>
+@endif
 @endsection

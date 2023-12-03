@@ -10,7 +10,9 @@ use App\Http\Controllers\userController;
 use App\Http\Controllers\SalonesController;
 use App\Http\Controllers\AppsTrabajo;
 use App\Http\Controllers\AppsTrabajoController;
+use App\Http\Controllers\enviopadre;
 use App\Http\Controllers\UsuariosEnLineaController;
+use App\Http\Controllers\wa;
 use App\Http\Middleware\UpdateUserStatus;
 
 /*
@@ -55,7 +57,8 @@ Route::group(['middleware' => ['auth', 'web','update.user.status']], function ()
 
 
     Route::prefix('dashboard')->group(function () {
-       
+       Route::get('/wa',[wa::class,'index'])->name('enviar');
+       Route::get('/was',[enviopadre::class,'verificarTardanza']);
         Route::get('/', [UsuariosEnLineaController::class, 'index'])->name('inicio');
         Route::get('/reportes-diarios', [ReporteController::class, 'mostrarReportesDiarios'])->name('reporte_diario');
         Route::get('/reportes-semanal', [ReporteController::class, 'mostrareporteMensual'])->name('reporte_semanal');

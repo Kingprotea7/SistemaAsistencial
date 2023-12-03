@@ -2,13 +2,17 @@
 <div>
     @yield('head')
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-danger border-bottom mb-3">
-        <div class="container d-flex justify-content-between align-items-center">
+    <nav class="navbar navbar-expand-lg navbar-light bg-danger border-bottom mb-3 text-center justify-content-center">
+        <div class="container d-flex justify-content-between align-items-center text-center">
             <!-- Logo y nombre de la aplicación -->
-            <div class="navbar-brand-container">
-                <a class="navbar-brand" href="#" style="color: #eaf1f8; font-weight: bold;">Sistema Asistencial I.E</a>
-                <a class="navbar-brand" href="#" style="color: #e7eaee; font-weight: bold;">Lucia Quispe Nina</a>
+            <div class="navbar-brand-container d-flex align-items-center">
+                <img src="{{ asset('images/i.e.png') }}" class="card-img-top img-fluid " style="max-width: 10%; height: auto;" alt="Imagen 1">
+                <div class="px-2">
+                    <a class="navbar-brand" href="#" style="color: #eaf1f8; font-weight: bold;">Sistema Asistencial I.E</a>
+                    <a class="navbar-brand" href="#" style="color: #e7eaee; font-weight: bold;">Lucia Quispe Nina</a>
+                </div>
             </div>
+
 
             <!-- Botón de hamburguesa para pantallas pequeñas -->
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
@@ -17,7 +21,7 @@
             </button>
 
             <!-- Enlaces de navegación -->
-            <div class="collapse navbar-collapse" id="navbarNav">
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('inicio') }}" style="color: #f3f5f8;">Inicio</a>
@@ -39,11 +43,22 @@
                     </li>
                 </ul>
             </div>
+
+
         </div>
+        <ul class="navbar-nav ml-auto ">
+            <li class="nav-item">
+                <a class="nav-link h5 bg-dark" href="{{ route('logout') }}" style="color: #f3f5f8;">
+                    <i class="fas fa-user"></i> Usuario ADMIN: Fiorella Lopez Bizarro
+                </a>
+            </li>
+        </ul>
     </nav>
+
 </div>
 
 <style>
+
     /* Estilos para dispositivos de pantalla pequeña */
     @media (max-width: 767px) {
         .navbar-brand-container {

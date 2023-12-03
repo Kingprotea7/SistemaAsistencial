@@ -1,7 +1,7 @@
 @extends('plantilla.plantilla')
 
 @section('content')
-<div class="container mt-5">
+<div class="container mt-5 saber">
     <h2 class="text-center mb-4 h1">Lista de Reportes Diarios</h2>
 
     @if ($reportesDiarios->count() > 0)
@@ -50,4 +50,17 @@
         <p class="text-center bg-dark text-white">No hay reportes diarios disponibles.</p>
     @endif
 </div>
+<style>
+
+.saber{
+    margin-bottom: 100px
+}
+@media (max-width: 768px) {
+        .saber {
+            margin-bottom: 150px/* Ajusta este valor para pantallas más pequeñas */
+
+
+        }
+    }
+</style>
 @endsection
