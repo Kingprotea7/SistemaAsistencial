@@ -1,7 +1,7 @@
 @extends('plantilla.plantilla')
 
 @section('content')
-<div class="container mt-5 ">
+<div class="container mt-5">
     <div class="row justify-content-center">
         <form id="searchForm" action="{{ route('buscar-alumnos') }}" method="GET">
             <div class="input-group mb-3">
@@ -12,7 +12,7 @@
             </div>
         </form>
 
-        <div class="col-md-4 ">
+        <div class="col-md-4">
             <div class="card">
                 <img src="{{ asset('ruta_a_tu_imagen1.jpg') }}" class="card-img-top" alt="Imagen 1">
                 <div class="card-body text-center">
@@ -32,41 +32,41 @@
             </div>
         </div>
     </div>
-</div>
-@if(isset($alumnos) && count($alumnos) > 0)
-    <h3 class="mt-4 text-primary">Resultados de la búsqueda</h3>
-    <table class="table mt-2">
-        <thead>
-            <tr>
-                <th>Nombre</th>
-                <th>Apellido Paterno</th>
-                <th>Apellido Materno</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($alumnos as $alumno)
-                <tr class="resultado-item">
-                    <td>{{ $alumno->nombre }}</td>
-                    <td>{{ $alumno->apellido_paterno }}</td>
-                    <td>{{ $alumno->apellido_materno }}</td>
+
+    <hr> <!-- Agregar línea horizontal como separador -->
+
+    @if(isset($alumnos) && count($alumnos) > 0)
+        <h3 class="mt-4 text-primary">Resultados de la búsqueda</h3>
+        <table class="table mt-2">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Apellido Paterno</th>
+                    <th>Apellido Materno</th>
                 </tr>
-            @endforeach
-        </tbody>
-    </table>
-@else
-    <p class="mt-4">No se encontraron resultados.</p>
-@endif
+            </thead>
+            <tbody>
+                @foreach ($alumnos as $alumno)
+                    <tr class="resultado-item">
+                        <td>{{ $alumno->nombre }}</td>
+                        <td>{{ $alumno->apellido_paterno }}</td>
+                        <td>{{ $alumno->apellido_materno }}</td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    @else
+        <p class="mt-4">No se encontraron resultados.</p>
+    @endif
+
     @if($errors->has('bien'))
-    <div class="alert alert-success">
-        {{ $errors->first('bien') }}
-    </div>
-@elseif($errors->has('mal'))
-    <div class="alert alert-danger">
-        {{ $errors->first('mal') }}
-    </div>
-@endif
-
-
+        <div class="alert alert-success">
+            {{ $errors->first('bien') }}
+        </div>
+    @elseif($errors->has('mal'))
+        <div class="alert alert-danger">
+            {{ $errors->first('mal') }}
+        </div>
+    @endif
+</div>
 @endsection
-
-

@@ -52,14 +52,12 @@ height: 100vh !important;
 
                       </div>
                       <div class="col-md-6 mb-4">
-
                         <div class="form-outline datepicker">
-                          <input type="text" class="form-control" name="password" id="exampleDatepicker1" />
-                          <label for="exampleDatepicker1" class="form-label" @required(true)>Contraseña <span style="color: red">(*)</span></label>
+                            <input type="password" class="form-control" name="password" id="exampleDatepicker1" />
+                            <label for="exampleDatepicker1" class="form-label" required="true">Contraseña <span style="color: red">(*)</span></label>
                         </div>
+                    </div>
 
-
-                      </div>
                       <div class="col-md-6 mb-4">
 
                         <div class="form-outline datepicker">

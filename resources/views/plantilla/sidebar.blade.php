@@ -7,59 +7,49 @@
           <i class="bx bx-menu" id="btn"></i>
         </div>
         <ul class="nav-list">
+         
           <li>
-            <i class="bx bx-search"></i>
-            <input type="text" placeholder="Search..." />
-            <span class="tooltip">Search</span>
-          </li>
-          <li>
-            <a href="#">
+            <a href="{{ route('inicio') }}">
               <i class="bx bx-grid-alt"></i>
               <span class="links_name">Dashboard</span>
             </a>
             <span class="tooltip">Dashboard</span>
           </li>
           <li>
-            <a href="#">
+            <a  href="{{ route('mostrarusuarios') }}">
               <i class="bx bx-user"></i>
-              <span class="links_name">User</span>
+              <span class="links_name">Usuarios</span>
             </a>
-            <span class="tooltip">User</span>
+            <span class="tooltip">Usuarios</span>
           </li>
+
           <li>
-            <a href="#">
-              <i class="bx bx-chat"></i>
-              <span class="links_name">Messages</span>
-            </a>
-            <span class="tooltip">Messages</span>
-          </li>
-          <li>
-            <a href="#">
+          <a  href="{{ route('RegistrarAsistencia') }}">
               <i class="bx bx-pie-chart-alt-2"></i>
-              <span class="links_name">Analytics</span>
+              <span class="links_name">Asistencia</span>
             </a>
-            <span class="tooltip">Analytics</span>
+            <span class="tooltip">Asistencia</span>
           </li>
           <li>
-            <a href="#">
+            <a  href="{{ route('reporte') }}">
               <i class="bx bx-folder"></i>
               <span class="links_name">File Manager</span>
             </a>
-            <span class="tooltip">Files</span>
+            <span class="tooltip">Reportes</span>
           </li>
           <li>
-            <a href="#">
+            <a  href="{{ route('Alumnado.index') }}">
               <i class="bx bx-cart-alt"></i>
               <span class="links_name">Order</span>
             </a>
-            <span class="tooltip">Order</span>
+            <span class="tooltip">Alumnado</span>
           </li>
           <li>
-            <a href="#">
+            <a href=" {{ route('Salones.index') }}">
               <i class="bx bx-heart"></i>
               <span class="links_name">Saved</span>
             </a>
-            <span class="tooltip">Saved</span>
+            <span class="tooltip">Salones</span>
           </li>
           <li>
             <a href="#">
@@ -68,20 +58,8 @@
             </a>
             <span class="tooltip">Setting</span>
           </li>
-          <li class="profile">
-            <div class="profile-details">
-              <img src="profile.jpg" alt="profileImg" />
-              <div class="name_job">
-                <div class="name">Prem Shahi</div>
-                <div class="job">Web designer</div>
-              </div>
-            </div>
-            <i class="bx bx-log-out" id="log_out"></i>
-          </li>
         </ul>
       </div>
-
-
  <script>
     let sidebar = document.querySelector(".sidebar");
 let closeBtn = document.querySelector("#btn");

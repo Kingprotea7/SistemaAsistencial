@@ -49,6 +49,9 @@ class userController extends Controller
         $user->password = Hash::make($request->input('password')); // Uso de Hash::make
         $user->role = $request->input('role');
         $user->save();
+
+        return redirect()->route('login.form')->withErrors(['error' => 'Cuenta creada con éxito ']);
+
     }
 
 
@@ -57,10 +60,12 @@ public function submit(Request $request)
     $credentials = $request->only('email', 'password');
 
     if (Auth::attempt($credentials)) {
+
         return redirect()->route('inicio');
     } else {
+
         // Autenticación fallida
-        return redirect()->route('login')->withErrors(['error' => 'Credenciales incorrectas :( ']);
+        return redirect()->route('login.form')->withErrors(['error' => 'Credenciales incorrectas :( ']);
 
     }
 }

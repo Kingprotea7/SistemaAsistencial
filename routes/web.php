@@ -34,9 +34,7 @@ Route::get('/', function () {
     return view('login.login');
 });
 // Ruta para mostrar el formulario de inicio de sesión
-Route::get('/login1', [userController::class, 'showLoginForm'])->name('login');
-
-
+Route::get('/login1', [userController::class, 'showLoginForm'])->name('login.form');
 
 Route::get('/consulta' ,function(){
     return view('login.padreconsulta');
@@ -57,6 +55,7 @@ Route::group(['middleware' => ['auth', 'web','update.user.status']], function ()
 
 
     Route::prefix('dashboard')->group(function () {
+        Route::get('wato',[wa::class,'notificacion']);
        Route::get('/wa',[wa::class,'index'])->name('enviar');
        Route::get('/was',[enviopadre::class,'verificarTardanza']);
         Route::get('/', [UsuariosEnLineaController::class, 'index'])->name('inicio');
@@ -69,13 +68,22 @@ Route::group(['middleware' => ['auth', 'web','update.user.status']], function ()
         Route::get('/mostrar-reporte', [AsistenciaController::class,'mostrarReporte'])->name('mostrar-reporte');
         Route::get('/mostrar_usuarios', [userController::class,'mostrarusuarios'])->name('mostrarusuarios');
         Route::get('/ordenar_usuarios', [userController::class,'ordenar'])->name('ordenarusuarios');
-        Route::get('/alumnos', [AlumnadoController::class, 'index'])->name('Alumnado.index');
+
+        Route::post('/enviarReporte',[ReporteController::class,'reporteT'])->name('reportetriple');
+
+
+        Route::get('/alumnos', [AlumnadoController::class , 'index'])->name('Alumnado.index');
+
         Route::get('alumnos/crear', [AlumnadoController::class, 'create'])->name('Alumnado.create');
+
         Route::get('alumnos/borrar', [AlumnadoController::class, 'delete'])->name('Alumnado.delete');
         Route::get('alumnos/editar', [AlumnadoController::class, 'edit'])->name('Alumnado.edit');
         Route::post('alumnos/store', [AlumnadoController::class, 'store'])->name('Alumnado.store');
         Route::get('alumnos/editar', [AlumnadoController::class, 'edit'])->name('Alumnado.edit');
+
+
         Route::get('/buscar-alumnos', [AlumnadoController::class,'buscarAlumnos'])->name('buscar-alumnos');
+        //john//
         Route::get('/usuarios-en-linea', [userController::class, 'index']);
 
             Route::get('/salones', [SalonesController::class, 'index'])->name('Salones.index');
@@ -121,7 +129,7 @@ Route::group(['middleware' => ['auth', 'web','update.user.status']], function ()
 
 
 
-Route::get('/logout', [userController::class,'logout'])->name('logout');
+Route::get('/logout', [userController::class,'logout'])->name('logout.custom');
 
 
 Route::get('/datos-asistencia', [AsistenciaController::class, 'mostrarDatosAsistencia'])->name('datos-asistencia');

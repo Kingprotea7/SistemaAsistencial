@@ -19,14 +19,21 @@ class User extends Authenticatable
     use TwoFactorAuthenticatable;
 
 
- 
+
     protected $fillable = [
+        'id',
         'name',
         'email',
         'password',
+        'role'
     ];
    // app/Models/User.php
+   public function salones()
+   {
 
+       return $this->hasMany(SalonesModel::class);
+
+   }
 public function status()
 {
     return $this->hasOne(UserStatus::class);

@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container mt-5 saber">
-    <h2 class="text-center mb-4 h1">Lista de Reportes Diarios</h2>
+    <h2 class="text-center mb-4 h1">Reporte asistencial</h2>
 
     @if ($reportesDiarios->count() > 0)
         <table class="table table-bordered table-striped table-dark">
@@ -49,7 +49,18 @@
     @else
         <p class="text-center bg-dark text-white">No hay reportes diarios disponibles.</p>
     @endif
+
+    <div class=" bg-dark align-content-center text-center my-3">
+      <p class="h3 text-white">  Acciones a realizar:</p>
+      <form id="exportPdfForm" action="{{ route('reportetriple') }}" method="post">
+        @csrf
+        <div class="btn btn-danger mx-4 my-2" >EXPORTAR PDF</div>
+    </form>
+        <div class="btn btn-success mx-4">EXPORTAR EXCEL</div>
+        <div class="btn btn-info ">ENVIAR REPORTE</div>
+    </div>
 </div>
+
 <style>
 
 .saber{
@@ -63,4 +74,9 @@
         }
     }
 </style>
+<script>
+    function exportPdf() {
+        document.getElementById('exportPdfForm').submit();
+    }
+</script>
 @endsection

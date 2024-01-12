@@ -106,14 +106,14 @@ public function almacenarReporteSalon(Request $request)
                         'semana' => $semana,
                         'mes' => $mes,
                         'asistencia_id' => $idAsistencia,
-                        // Otros campos según tu necesidad
+                       
                     ]);
 
 
 
 
                 } else {
-                    // Manejar el caso en el que no se encuentra la asistencia
+
                     Log::info("No se encontró la asistencia para el alumno con ID: " . $alumno->id);
                 }
             } else {

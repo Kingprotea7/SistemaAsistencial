@@ -51,7 +51,9 @@ public function store(Request $request){
         $alumno->nombre = $request->input('nombre');
         $alumno->apellido_paterno = $request->input('ap_paterno');
         $alumno->apellido_materno = $request->input('ap_materno');
-        $alumno->num_padre = $request->input('num_padre');
+        $numeroPadre= $request->input('num_padre');
+        $numeroPadreConPrefijo = '+51' .  $numeroPadre;
+    $alumno->num_padre = $numeroPadreConPrefijo;
         $alumno->nivel = $request->input('nivel');
         $alumno->grado = $request->input('grade');
         $alumno->seccion = $request->input('section');

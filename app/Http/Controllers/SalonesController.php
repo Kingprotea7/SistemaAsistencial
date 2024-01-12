@@ -6,6 +6,7 @@ use App\Models\AlumnosModel;
 use App\Models\AsistenciaModel;
 use App\Models\docenteModel;
 use App\Models\SalonesModel;
+use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
 
@@ -21,7 +22,7 @@ class SalonesController extends Controller
     $salon->nivel=$request->input('nivel');
     $salon->grade=$request->input('grade');
     $salon->section=$request->input('section');
-    $salon->docente_id=$request->input('docente_id');
+    $salon->users_id=$request->input('docente_id');
 
     $salonExistente = SalonesModel::where('grade', $salon->grade)
     ->where('section', $salon->section)
@@ -42,9 +43,12 @@ class SalonesController extends Controller
 
    }
    public function create(){
-    $docentes = docenteModel::all(); // Consulta para obtener todos los docentes
+
+    $docentes = User::where('role', 'docente')->get(); // Filtra los usuarios con role igual a "docente"
+
     return view('dashboard.Salones.crearSalon', ['docentes' => $docentes]);
-   }
+}
+
 
    public function listar(){
     $salones = SalonesModel::where('grade', '1')
@@ -58,17 +62,18 @@ class SalonesController extends Controller
     ->where('nivel', 'secundaria')
     ->orderBy('section', 'asc')->with('docente')->get();
     return view('dashboard.Salones.listarSecundaria',['salones'=>$salones]);
-   }
-   public function listarS1(Request $request){
-    $grade = $request->input('grade'); // Obtiene el valor del parámetro 'grade' desde la URL
+   }public function listarS1(Request $request){
+    $grade = $request->input('grade');
     $salones = SalonesModel::where('nivel', 'primaria')
-        ->where('grade', $grade) // Filtras por grado, no por nivel
+        ->where('grade', $grade)
         ->orderBy('section', 'asc')
         ->with('docente')
         ->get();
 
+
     return view('dashboard.Salones.iteracion1ero', ['salones' => $salones]);
 }
+
 
 public function listarS2(Request $request){
     $grade = $request->input('grade'); // Obtiene el valor del parámetro 'grade' desde la URL

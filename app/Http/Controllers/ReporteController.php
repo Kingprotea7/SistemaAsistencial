@@ -7,6 +7,10 @@ use App\Models\Reporte;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Facades\Excel;
+use App\http\Controllers\ReportesDiariosExport;
+use Maatwebsite\Excel\Concerns\FromCollection;
+
 class ReporteController extends Controller
 {
 
@@ -48,7 +52,18 @@ public function mostrarReportesDiarios(Request $request)
     return view('reporte.diario', compact('reportesDiarios'));
 
 }
+public function reporteT(){
+    $fechaHoy = now()->toDateString();
+    $query = Reporte::with(['alumno', 'asistencia'])
+    ->leftJoin('alumnos', 'reportes.alumno_id', '=', 'alumnos.id')
+    ->leftJoin('asistencias', 'reportes.asistencia_id', '=', 'asistencias.id')
+    ->where('tipo_reporte', 'diario')
+    ->whereDate('reportes.created_at', $fechaHoy)
+    ->select('reportes.*', DB::raw('asistencias.tipo as tipo_asistencia'));
+    $reportesDiarios = $query->get();
 
+    
+}
 
 public function mostrarBarraSalones(){
 

@@ -31,6 +31,9 @@ public function reportes()
 {
     return $this->hasMany(Reporte::class, 'alumno_id');
 }
+public function getTardanzas(){
+    return $this->tardanzas;
+}
 
 public function nombreCompleto()
 {

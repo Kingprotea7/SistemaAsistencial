@@ -39,20 +39,28 @@
                         <a class="nav-link" href="#" style="color: #f3f5f8">Ayuda</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('logout') }}" style="color: #f3f5f8;">Salir</a>
+                        <a class="nav-link" href="{{ route('logout.custom') }}" style="color: #f3f5f8;">Salir</a>
                     </li>
                 </ul>
             </div>
 
 
         </div>
-        <ul class="navbar-nav ml-auto ">
-            <li class="nav-item">
-                <a class="nav-link h5 bg-dark" href="{{ route('logout') }}" style="color: #f3f5f8;">
-                    <i class="fas fa-user"></i> Usuario ADMIN: Fiorella Lopez Bizarro
-                </a>
-            </li>
-        </ul>
+        <!-- ... (código previo) ... -->
+
+<ul class="navbar-nav ml-auto ">
+    <li class="nav-item">
+        @auth
+            <a class="nav-link h5 bg-dark" href="{{ route('logout') }}" style="color: #f3f5f8;">
+                <i class="fas fa-user"></i> Usuario: {{ auth()->user()->name }} <br>
+                {{ auth()->user()->lastname_name }}
+            </a>
+        @endauth
+    </li>
+</ul>
+
+<!-- ... (resto del código) ... -->
+
     </nav>
 
 </div>

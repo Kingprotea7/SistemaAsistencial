@@ -9,12 +9,16 @@ class SalonesModel extends Model
 {
     use HasFactory;
   protected  $table='salones';
-protected $fillable=['nivel','grade','section','docente_id'];
+protected $fillable=['nivel','grade','section','users_id'];
 public $timestamps = false;
+// En el modelo Salon
+// En el modelo SalonesModel
+// En el modelo SalonesModel
 public function docente()
 {
-    return $this->belongsTo(DocenteModel::class);
+    return $this->belongsTo(User::class, 'users_id');
 }
+
 
 public function alumnos() {
     return $this->hasMany(AlumnosModel::class, 'salon_id');
